@@ -270,45 +270,102 @@
     }
     .map-distance {
       margin-top: 16px;
-      padding-top: 12px;
+      padding-top: 14px;
       border-top: 1px dashed rgba(229, 223, 247, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     
-    .map-heading {
-      font-size: 0.9rem;
-      font-weight: 600;
+    .map-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    
+    .map-heading-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, rgba(77, 215, 162, 0.42), transparent 60%),
+                  radial-gradient(circle at 100% 100%, rgba(199, 146, 255, 0.42), transparent 60%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 0.8rem;
       color: var(--text-main);
-      margin-bottom: 4px;
+    }
+    
+    .map-arrow {
+      font-size: 1rem;
+    }
+    
+    .map-flight-counter {
+      font-size: 0.8rem;
+      color: rgba(229, 223, 247, 0.9);
     }
     
     .map-caption {
       font-size: 0.8rem;
       color: rgba(229, 223, 247, 0.85);
       line-height: 1.5;
-      max-width: 520px;
+      max-width: 540px;
     }
     
     .map-embed {
-      margin-top: 8px;
-      border-radius: 16px;
+      margin-top: 4px;
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow:
-        0 10px 22px rgba(0, 0, 0, 0.7),
-        0 0 14px rgba(199, 146, 255, 0.25);
+        0 14px 26px rgba(0, 0, 0, 0.75),
+        0 0 18px rgba(199, 146, 255, 0.35);
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(77, 215, 162, 0.22), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(255, 75, 110, 0.18), transparent 55%);
     }
     
     .map-embed iframe {
       width: 100%;
-      height: 260px;
+      height: 280px;
       border: 0;
+      display: block;
+    }
+    
+    /* Little labels on top of the map */
+    .map-badge {
+      position: absolute;
+      top: 10px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(5, 12, 15, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--text-soft);
+      backdrop-filter: blur(6px);
+    }
+    
+    .map-badge-left {
+      left: 10px;
+    }
+    
+    .map-badge-right {
+      right: 10px;
     }
     
     @media (max-width: 640px) {
+      .map-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    
       .map-embed iframe {
-        height: 220px;
+        height: 230px;
       }
     }
+
 
 
     .card-header {
@@ -587,20 +644,20 @@
         <p>
           If you’re reading this, it means you opened the small corner of the internet
           I built just for you. While you’re in Pakistan and I’m somewhere else, this
-          is my way of holding your hand through a screen, a page where every memory,
+          is my way of holding your hand through a screen — a page where every memory,
           every silly message, every call at 3&nbsp;AM has a home.
         </p>
         <p>
-          When I think about you, it’s not just our chats I miss, it’s you being close.
+          When I think about you, it’s not just our chats I miss — it’s you being close.
           I miss having you right next to me, your hugs, your smiles, your laugh, the way
           you play with my hair and give me those little kisses that make everything else
           disappear. I miss your black-cat energy, the way you’d sometimes risk everything
           just to come out and see me, and how you still try to answer me even when you’re
-          busy. You’re so precious to me, and I love YOU SO MUCH.
+          busy. You’re so precious to me, and I love you in this soft, obsessed, ridiculous way.
         </p>
         <p>
-          Distance is annoying, but it never wins. I’ll keep writing here, day by day,
-          story by story, so that when you come back, we can look at this and say:
+          Distance is annoying, but it never wins. I’ll keep writing here — day by day,
+          story by story — so that when you come back, we can look at this and say:
           “We did it. We made it through all of this together.”
         </p>
         <p>
@@ -610,13 +667,25 @@
     
         <!-- MAP: MELBOURNE → ISLAMABAD -->
         <div class="map-distance">
-          <div class="map-heading">Right now: Melbourne 🍃 → Islamabad 🍒</div>
+          <div class="map-top-row">
+            <div class="map-heading-pill">
+              <span>💚 Melbourne</span>
+              <span class="map-arrow">✈️</span>
+              <span>🍒 Islamabad</span>
+            </div>
+            <div class="map-flight-counter" id="daysCounter">
+              Counting from your flight day…
+            </div>
+          </div>
+    
           <p class="map-caption">
-            This is the line between where we are on a map , but somehow,
-            no matter how many kilometres it shows, you still feel like you’re right here
-            next to me.
+            This is the line between where we are on a map, but somehow, no matter how many
+            kilometres it shows, you still feel like you’re right here next to me.
           </p>
+    
           <div class="map-embed">
+            <div class="map-badge map-badge-left">Me in Melbourne 💚</div>
+            <div class="map-badge map-badge-right">You in Islamabad 🍒</div>
             <iframe
               src="https://www.google.com/maps?q=Melbourne,+Australia+to+Islamabad,+Pakistan&output=embed"
               loading="lazy"
@@ -627,6 +696,7 @@
         </div>
       </div>
     </section>
+
 
     <div class="cherry-divider">
       <span>🍒 <b>Our days while you’re away</b> — every cherry is a memory 🍒</span>
@@ -667,7 +737,7 @@
             <!-- Example video -->
             
             <video controls>
-              <source src="plane.mp4" type="video/mp4">
+              <source src="travel.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
             
@@ -744,5 +814,44 @@
       } catch (e) {}
     })();
   </script>
+
+  <script>
+    (function () {
+      const el = document.getElementById("daysCounter");
+      if (!el) return;
+  
+      // Your flight: Monday 24 Nov at 8 PM (change year/time if needed)
+      const flightDate = new Date("2025-11-24T20:00:00");
+  
+      function updateCounter() {
+        const now = new Date();
+        let diff = now - flightDate;
+  
+        if (diff <= 0) {
+          el.textContent = "Flight day: you’re in the sky right now ✈️";
+          return;
+        }
+  
+        const dayMs = 1000 * 60 * 60 * 24;
+        const hrMs = 1000 * 60 * 60;
+  
+        const days = Math.floor(diff / dayMs);
+        diff -= days * dayMs;
+        const hours = Math.floor(diff / hrMs);
+  
+        const dWord = days === 1 ? "day" : "days";
+        const hWord = hours === 1 ? "hour" : "hours";
+  
+        el.textContent =
+          `It’s been ${days} ${dWord} and ${hours} ${hWord} ` +
+          `since your flight — and I still love you more every minute.`;
+      }
+  
+      updateCounter();
+      // Update every hour
+      setInterval(updateCounter, 60 * 60 * 1000);
+    })();
+  </script>
+
 </body>
 </html>
